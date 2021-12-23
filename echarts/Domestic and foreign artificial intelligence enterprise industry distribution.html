@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+
+</head>
+<body>
+    <div id="692cc97d211342b889ac9192513e8b42" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_692cc97d211342b889ac9192513e8b42 = echarts.init(
+            document.getElementById('692cc97d211342b889ac9192513e8b42'), 'white', {renderer: 'canvas'});
+        var option_692cc97d211342b889ac9192513e8b42 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "name": "China",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "AI",
+                    "value": 46
+                },
+                {
+                    "name": "Intelligent Robot",
+                    "value": 22
+                },
+                {
+                    "name": "Intelligent Driving",
+                    "value": 5
+                },
+                {
+                    "name": "UAV ",
+                    "value": 6
+                },
+                {
+                    "name": "Big Data",
+                    "value": 17
+                },
+                {
+                    "name": "AR/VR",
+                    "value": 3
+                }
+            ],
+            "radius": [
+                "35%",
+                "55%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": true,
+                "position": "inner",
+                "margin": 8,
+                "formatter": "{d}%"
+            }
+        },
+        {
+            "type": "pie",
+            "name": "Foreign",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "AI",
+                    "value": 76
+                },
+                {
+                    "name": "Intelligent Robot",
+                    "value": 6
+                },
+                {
+                    "name": "Intelligent Driving",
+                    "value": 3
+                },
+                {
+                    "name": "UAV ",
+                    "value": 1
+                },
+                {
+                    "name": "Big Data",
+                    "value": 13
+                },
+                {
+                    "name": "AR/VR",
+                    "value": 1
+                }
+            ],
+            "radius": [
+                "60%",
+                "80%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": true,
+                "position": "inner",
+                "margin": 8,
+                "formatter": "{d}%"
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "AI",
+                "Intelligent Robot",
+                "Intelligent Driving",
+                "UAV ",
+                "Big Data",
+                "AR/VR"
+            ],
+            "selected": {},
+            "show": true,
+            "left": "2%",
+            "top": "30%",
+            "orient": "scroll",
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "Domestic and foreign artificial intelligence enterprise industry distribution",
+            "left": "10%",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ],
+    "graphic": [
+        {
+            "type": "text",
+            "$action": "merge",
+            "rotation": 0,
+            "left": "center",
+            "top": "middle",
+            "bounding": "all",
+            "z": 100,
+            "zlevel": 0,
+            "silent": false,
+            "invisible": false,
+            "ignore": false,
+            "cursor": "pointer",
+            "draggable": false,
+            "progressive": false,
+            "width": 0,
+            "height": 0,
+            "style": {
+                "text": "China",
+                "x": 0,
+                "y": 0,
+                "font": "14px Microsoft YaHei",
+                "textAlign": "left",
+                "fill": "#333",
+                "line_width": 0
+            }
+        },
+        {
+            "type": "text",
+            "$action": "merge",
+            "position": [
+                200,
+                230
+            ],
+            "rotation": 0,
+            "bounding": "all",
+            "z": 100,
+            "zlevel": 0,
+            "silent": false,
+            "invisible": false,
+            "ignore": false,
+            "cursor": "pointer",
+            "draggable": false,
+            "progressive": false,
+            "width": 0,
+            "height": 0,
+            "style": {
+                "text": "Foreign",
+                "x": 0,
+                "y": 0,
+                "font": "14px Microsoft YaHei",
+                "textAlign": "left",
+                "fill": "#333",
+                "line_width": 0
+            }
+        }
+    ]
+};
+        chart_692cc97d211342b889ac9192513e8b42.setOption(option_692cc97d211342b889ac9192513e8b42);
+    </script>
+</body>
+</html>

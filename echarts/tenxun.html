@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <title>腾讯视频下载</title>
+	<style>
+	     #res{
+		    display:inline-block;
+			width:500px;
+			height:30px;
+			font-size:14px;
+			line-height:30px;
+			padding:0;
+		 }
+		 .container{
+		    padding-top: 50px;
+		 }
+		 #qxd,#isVid{
+		    display:inline-block;
+			width:120px;
+			height:30px;
+			font-size:14px;
+			line-height:30px;
+		 }
+		 #download{
+			display:inline-block;
+			width:100px;
+			height:30px;
+			font-size:14px;
+			line-height:25px;
+			text-align:center;
+			padding:0;
+			margin-bottom: 4px;
+		 }
+	</style>
+  </head>
+  <body>
+    <div class="container">
+	   <p>首先在视频上<b>点击鼠标右键-->复制视频页面地址</b>，然后将复制的地址粘贴到下方输入框：</p>
+	   <div>
+	       <select id="isVid">
+			  <option value="1" selected>视频页面地址</option>
+			  <option value="2">视频vid</option>
+			</select>
+	       <input id="res" type="text" placeholder="请输入视频链接" />
+		   <select id="qxd">
+			  <option value="1" selected>标清</option>
+			  <option value="2">高清</option>
+			</select>
+			<button id="download" class="btn btn-large btn-primary" type="button">获取下载地址</button>
+	   </div>
+		<p style="width:100%;padding:20px;word-wrap:break-word;" id="result"></p>
+	</div>
+	<script type="text/javascript">
+	    var bqApi = "http://vv.video.qq.com/getinfo?vids={vids}&platform=101001&charge=0&otype=json&defn=shd";
+		var gqApi = "http://vv.video.qq.com/getkey?format=2&otype=json&vt=150&vid={vids}&ran=0\%2E9477521511726081\\&charge=0&filename={vids}.mp4&platform=11";
+		var downloadUrl = "";
+		var link = "";
+		var isVid = "";
+		var qxd = "";
+		var vids = "";
+
+		$("#download").click(function(){
+		   link = $("#res").val();
+		   qxd = $("#qxd").val();
+		   isVid = $("#isVid").val();
+		   if(isVid == "1"){
+		     if(checkUrl(link)){
+			      vids = getVids(link);
+				  process()
+			   }
+			   else{
+				 alert("视频链接不正确");
+			   }
+		   }
+		   else{
+		     vids = link;
+			  if(vids != ""){
+			     process();
+			  }
+		   }
+		});
+		function checkUrl(url){
+			var reg=/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/;
+			if(url!="" && reg.test(url) && url.indexOf("page/")!=-1 && url.indexOf(".html")!=-1){
+				return true;
+			}
+			return false;
+		}
+
+		function getVids(url){
+		   url = url.split(".html")[0].split("\/");
+		   return url[url.length-1];
+		}
+
+		function process(){
+		  bqApi = bqApi.replace("{vids}",vids);
+		  gqApi = gqApi.replace("{vids}",vids);
+		  var api1Json = {};
+		  var api2Json = {};
+			$.ajax({
+				type:"get",
+				url:bqApi,
+				dataType:"jsonp",
+				jsonpCallback:"cb",
+				success:function(data){
+					api1Json = data;
+					if(qxd == "1"){//下载标清
+					   console.log(api1Json);
+					   downloadUrl = api1Json.vl.vi[0].ul.ui[0].url + api1Json.vl.vi[0].fn + "?vkey=" + api1Json.vl.vi[0].fvkey;
+					   $("#result").html("视频链接为：" + downloadUrl + "　<a href='" + downloadUrl + "'>点击此处</a>打开视频，在视频上右键另存为保存到本地。");
+					   //dw();
+					}
+					else{//下载高清
+					   $.ajax({
+							type:"get",
+							url:bqApi,
+							dataType:"jsonp",
+							jsonpCallback:"cb",
+							success:function(dat){
+								api2Json = dat;
+								console.log(api2Json);
+								downloadUrl = api1Json.vl.vi[0].ul.ui[0].url + vids + ".mp4?vkey=" + api2Json.vl.vi[0].fvkey;
+								$("#result").html("视频链接为：" + downloadUrl + "　<a href='" + downloadUrl + "'>点击此处</a>打开视频，在视频上右键另存为保存到本地。");
+								//dw();
+							}
+						});
+					}
+				}
+			});
+		}
+
+		function dw(){
+		   window.location.href=downloadUrl;
+		}
+
+	</script>
+
+  </body>
+</html>
